@@ -14,7 +14,7 @@ int main()
         j=s%n;
 
         if(a>=i);
-        else j=j+n*(i-a);
+        else j=j+3*(i-a);
 
         if(b>=j) printf("YES\n");
 
