@@ -25,6 +25,10 @@ using namespace std;
   So, it is enough to check if 2 and 3 are the only factors of b/gcd(a,b) and a/gcd(a,b)
   So, we don't need to calculate lcm, we can work with gcd.
   Thus we don't need to worry about big value of lcm.
+  
+  So, we can go back to our initial approach.
+  And find out the gcd of whole array.
+  And check every element, if we can make gcd equal to that element by multiplying with 2 and 3 only.
 */
    
 // O(log(min(a,b)))
