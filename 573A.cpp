@@ -1,9 +1,9 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 //Compiler version g++ 6.3.0
 /*
+  Explanation:
   My initial approach is, I will find out the lcm of the whole array.
   Then I will check every element of the array, if it can be made equal to the lcm by multiplying with 2 and 3 only.
   
@@ -12,6 +12,19 @@ using namespace std;
   
   So my second approach is, I will find out the lcm of adjacent elements.
   And check if both of the element can be made equal to their lcm by multiplying with 2 and 3 only.
+  Suppose, adjacent elements are a and b.
+  For a, we need to check if 2 and 3 are the only factors of lcm(a,b)/a
+  For b, we need to check if 2 and 3 are the only factors of lcm(a,b)/b
+  
+  On further analysis, I have figured out that,
+  lcm(a,b) = (a*b)/gcd(a,b)
+  thus,
+  lcm(a,b)/a = b/gcd(a,b)
+  lcm(a,b)/b = a/gcd(a,b)
+ 
+  So, it is enough to check if 2 and 3 are the only factors of b/gcd(a,b) and a/gcd(a,b)
+  So, we don't need to calculate lcm, we can work with gcd.
+  Thus we don't need to worry about big value of lcm.
 */
    
 // O(log(min(a,b)))
@@ -26,36 +39,20 @@ int gcd(int a,int b)
   return b; // 1<= gcd(a,b) <= min(a,b)
 }
 
-// O(log(min(a,b)))
-long long lcm(int a,int b)
+bool isTwoAndThreeAreOnlyFactors(int n)
 {
   /*
-    a -> 10^9
-    b -> 10^9
-    a*b -> 10^18
-    
-    unsigned long long -> 0 to 1.8x10^19
-    long long -> -9x10^18 to 9x10^18
-    
-    So, we need to use long long or unsigned long long to store lcm.
+    let, n = 2^p * 3^q * r
+    if(r==1) YES
   */
-  return (long long)a*b/gcd(a,b);  // max(a,b) <= lcm(a,b) <= a*b
-}
-
-bool isPossible(long long lcm,int a)
-{
-  /*
-    let, lcm = a * 2^p * 3^q * r
-    if(r>1) NO
-  */
-  int r=lcm/a;
+  // O(max(p,q))
   while(true)
   {
-    if(r%2==0) r/=2;
-    if(r%3==0) r/=3;
-    if(r%2!=0 && r%3!=0) break;
+    if(n%2==0) n/=2;
+    if(n%3==0) n/=3;
+    if(n%2!=0 && n%3!=0) break;
   }
-  return r==1;
+  return n==1; // n -> r
 }
 int main()
 {
@@ -67,12 +64,11 @@ int main()
       cin>>x[i];
     }    
     
-    // Calculating lcm of adjacent element and checking
     for(int i=1;i<n;i++)      
     {
-      long long l=lcm(x[i],x[i-1]);   
+      int g=gcd(x[i],x[i-1]);   
                 
-      if(!isPossible(l,x[i]) || !isPossible(l,x[i-1]))
+      if(!isTwoAndThreeAreOnlyFactors(x[i-1]/g) || !isTwoAndThreeAreOnlyFactors(x[i]/g))
       {
         cout<<"NO";
         return 0;
