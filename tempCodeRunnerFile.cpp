@@ -1,7 +1,1 @@
-    }
-    int m;
-    cin >> m;
-    while (m--)
-    {
-        int type, l, r;
-        cin >> type >> l >> r;
+if (s[i] == s[i + 1])
