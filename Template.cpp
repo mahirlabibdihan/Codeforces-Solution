@@ -1,7 +1,10 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+#define FASTIO               \
+    ios::sync_with_stdio(0); \
+    cin.tie(nullptr);
+typedef long long int64;
+typedef unsigned long long uint64;
 
 void solve()
 {
