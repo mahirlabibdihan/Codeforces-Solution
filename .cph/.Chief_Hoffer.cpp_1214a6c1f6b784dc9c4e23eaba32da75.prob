@@ -1,0 +1,1 @@
+{"name":"Local: Chief_Hoffer","url":"g:\\Github\\Codeforces-Solution\\Chief_Hoffer.cpp","tests":[{"id":1643916742803,"input":"5\n3 4 3 2 4","output":"4"},{"id":1643916759945,"input":"3\n4 4 4","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"g:\\Github\\Codeforces-Solution\\Chief_Hoffer.cpp","group":"local","local":true}
